@@ -3,7 +3,7 @@ function UserServiceClient() {
     this.findAllUsers = findAllUsers;
     this.deleteUser = deleteUser;
     this.url =
-        'http://fathomless-brook-39975.herokuapp.com/api/user';
+        'https://fathomless-brook-39975.herokuapp.com/api/user';
     var self = this;
 
     function deleteUser(userId) {
