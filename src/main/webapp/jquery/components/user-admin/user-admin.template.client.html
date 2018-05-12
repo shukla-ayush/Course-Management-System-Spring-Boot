@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <title>User Admin</title>
   <script
           src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -31,10 +32,12 @@
         <th><input id="passwordFld" class="form-control" type="password"/></th>
         <th><input id="firstNameFld" class="form-control" placeholder="John"/></th>
         <th><input id="lastNameFld" class="form-control" placeholder="Doe"/></th>
-        <th><select name="role" class="form-control"><option value="faculty">Faculty</option>
-        						<option value="faculty">Student</option></select></th>
-        <th><button id="createUser" class="btn btn-success">Create</button>
-        	<button id="updateUser" class="btn btn-success">Update</button>
+        <th><select name="role" class="form-control">
+        			<option value="faculty">Faculty</option>
+        			<option value="faculty">Student</option>
+        	</select></th>
+        <th><button id="createUser"><i class="fa fa-plus" aria-hidden="true"></i></button>
+        	<button id="updateUser"><i class="fa fa-check" aria-hidden="true"></i></button>
        	</th>
       </tr>
     </thead>
@@ -45,8 +48,8 @@
         <td class="fname">Alice</td>
         <td class="lname">Wonderland</td>
         <td class="rolename">Faculty</td>
-        <th><button class="delete btn btn-danger">Delete</button>
-        	<button class="edit btn btn-danger">Edit</button></th>
+        <th><button class="delete"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+        	<button class="edit"><i class="fa fa-pencil" aria-hidden="true"></i></button></th>
       </tr>
     </tbody>
     <tfoot></tfoot>

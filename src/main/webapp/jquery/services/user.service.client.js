@@ -4,10 +4,10 @@ function UserServiceClient() {
     this.findUserById = findUserById;
     this.deleteUser = deleteUser;
     this.updateUser = updateUser;
-    this.url = 'https://fathomless-brook-39975.herokuapp.com/api/user';
+    this.url = 'http://localhost:8085/api/user';
     var self = this;
 
-    //'http://localhost:8085/api/user'
+    //'https://fathomless-brook-39975.herokuapp.com/api/user' 
     
 
     function createUser(user) {

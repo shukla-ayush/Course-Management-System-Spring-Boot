@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet"/>
+<title>Profile</title>
+
+	<script
+          src="https://code.jquery.com/jquery-3.3.1.min.js"
+          integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+          crossorigin="anonymous"></script>
+          
+          
+
+</head>
+<body>
+  <div class="container">
+    <h1 id="title">Profile</h1>
+
+    <form>
+      <div class="form-group row">
+        <label for="email" 
+        		class="col-sm-2 col-form-label">
+        	Username
+        </label>
+        <div class="col-sm-10">
+          <input type="text" 
+          		 readonly class="form-control-plaintext" 
+          		 id="username" 
+          		 value="alice">
+        </div>
+      </div>
+       <div class="form-group row">
+        <label for="email" 
+        		class="col-sm-2 col-form-label">
+        	Email
+        </label>
+        <div class="col-sm-10">
+          <input type="text" 
+          		 readonly class="form-control-plaintext" 
+          		 id="email" 
+          		 value="abc@xyz.com">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="firstName" class="col-sm-2 col-form-label">
+          First Name
+        </label>
+        <div class="col-sm-10">
+          <input type="text"
+                 class="form-control"
+                 id="firstName"
+                 placeholder="First Name">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="lastName"
+               class="col-sm-2 col-form-label">
+          Last Name
+        </label>
+        <div class="col-sm-10">
+          <input type="text"
+                 class="form-control"
+                 id="lastName"
+                 placeholder="Last Name">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="phone"
+               class="col-sm-2 col-form-label">
+          Phone Number
+        </label>
+        <div class="col-sm-10">
+          <input type="text"
+                 class="form-control"
+                 id="phone"
+                 placeholder="(857)-123-4567">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="inputPassword"
+        	   class="col-sm-2 col-form-label">
+        	Password
+        </label>
+        <div class="col-sm-10">
+          <input type="password" 
+          		 class="form-control" 
+          		 id="inputPassword" 
+          		 placeholder="Password">
+        </div>
+      </div>
+       <div class="form-group row">
+        <label for="dob"
+        	   class="col-sm-2 col-form-label">
+        	Date of Birth
+        </label>
+        <div class="col-sm-10">
+          <input type="date" 
+          		 class="form-control" 
+          		 id="dob" 
+          		 value="1990-12-12">
+        </div>
+      </div>
+      <button id="updateBtn"
+              type="button"
+              class="btn btn-primary btn-block">Update</button>
+    </form>
+
+  </div>
+</body>
+</html>
