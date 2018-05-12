@@ -41,9 +41,16 @@ public class User {
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
 	}
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
+	}
+
 	private String username;
 	private String password;
 	private String firstname;
 	private String lastname;
-	
+	private String role;
 }

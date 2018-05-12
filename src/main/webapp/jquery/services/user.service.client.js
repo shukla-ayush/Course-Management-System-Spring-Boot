@@ -3,11 +3,11 @@ function UserServiceClient() {
     this.findAllUsers = findAllUsers;
     this.findUserById = findUserById;
     this.deleteUser = deleteUser;
-    this.url =
-        'http://localhost:8085/api/user';
+    this.updateUser = updateUser;
+    this.url = 'https://fathomless-brook-39975.herokuapp.com/api/user';
     var self = this;
 
-    //'https://fathomless-brook-39975.herokuapp.com/api/user'
+    //'http://localhost:8085/api/user'
     
 
     function createUser(user) {
@@ -24,6 +24,23 @@ function UserServiceClient() {
         return fetch(self.url + '/' + userId, {
             method: 'delete'
         })
+    }
+    
+    function updateUser(userId, user) {
+        return fetch(self.url + '/' + userId, {
+            method: 'put',
+            body: JSON.stringify(user),
+            headers: {
+                'content-type': 'application/json'
+            }
+        })
+        .then(function(response){
+            if(response.bodyUsed) {
+                return response.json();
+            } else {
+                return null;
+            }
+        });
     }
     
     function findUserById(userId) {

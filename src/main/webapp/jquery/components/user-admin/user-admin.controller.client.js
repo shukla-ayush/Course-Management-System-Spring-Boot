@@ -30,10 +30,10 @@
         var role = $('#role').val();
 
         var user = {
-            username: $username,
-            password: $password,
-            firstname: $firstname,
-            lastname: $lastname,
+            username: username,
+            password: password,
+            firstname: firstname,
+            lastname: lastname,
             role: role
         };
 
@@ -87,6 +87,32 @@
     	userService
     		.findUserById(userId)
     		.then(renderUser);
+    	
+    	var user = userService
+    				.findUserById(userId);
+    	
+    	$('#updateUser').click(userId, updateUser);
+    }
+    
+    function updateUser(event){
+    	
+    	var username = $('#usernameFld').val();
+        var password = $('#passwordFld').val();
+        var firstname = $('#firstNameFld').val();
+        var lastname = $('#lastNameFld').val();
+        var role = $('#role').val();
+
+        var user = {
+            username: username,
+            password: password,
+            firstname: firstname,
+            lastname: lastname,
+            role: role
+        };
+    	
+    	userService
+    		.updateUser(event.data, user)
+    		.then(findAllUsers);
     }
     
     function renderUser(user){
