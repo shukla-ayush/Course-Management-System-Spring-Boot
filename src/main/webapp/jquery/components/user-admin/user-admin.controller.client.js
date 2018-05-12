@@ -13,7 +13,7 @@
 
         findAllUsers();
     }
-
+    
     function findAllUsers() {
         userService
             .findAllUsers()
@@ -25,14 +25,16 @@
 
         var username = $('#usernameFld').val();
         var password = $('#passwordFld').val();
-        var firstName = $('#firstNameFld').val();
-        var lastName = $('#lastNameFld').val();
+        var firstname = $('#firstNameFld').val();
+        var lastname = $('#lastNameFld').val();
+        var role = $('#role').val();
 
         var user = {
-            username: username,
-            password: password,
-            firstName: firstName,
-            lastName: lastName
+            username: $username,
+            password: $password,
+            firstname: $firstname,
+            lastname: $lastname,
+            role: role
         };
 
         userService
@@ -49,24 +51,57 @@
             clone.attr('id', user.id);
 
             clone.find('.delete').click(deleteUser);
+            clone.find('.edit').click(editUser);
 
             clone.find('.username')
                 .html(user.username);
+            clone.find('.fname')
+            	.html(user.firstname);
+            clone.find('.lname')
+            	.html(user.lastname);
+            clone.find('.rolename')
+            	.html(user.role);
             tbody.append(clone);
         }
     }
 
-    function deleteUser(event) {
+    function deleteUser(event){
         var deleteBtn = $(event.currentTarget);
         var userId = deleteBtn
-            .parent()
-            .parent()
-            .attr('id');
+            			.parent()
+            			.parent()
+            			.attr('id');
 
         userService
             .deleteUser(userId)
             .then(findAllUsers);
+    }    
+
+    function editUser(event){ 
+    	var editBtn = $(event.currentTarget);
+    	var userId = editBtn
+    					.parent()
+    					.parent()
+    					.attr('id');
+    	
+    	userService
+    		.findUserById(userId)
+    		.then(renderUser);
     }
+    
+    function renderUser(user){
+    	var $username = $('#usernameFld');
+        var $password = $('#passwordFld');
+        var $firstname = $('#firstNameFld');
+        var $lastname = $('#lastNameFld');
+        var $role = $('#role');
+        $username.val(user.username);
+        $password.val(user.password);
+        $firstname.val(user.firstname);
+        $lastname.val(user.lastname);
+        $role.val(user.role);
+    }
+    
 
 
 })();
