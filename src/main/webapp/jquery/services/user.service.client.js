@@ -4,9 +4,10 @@ function UserServiceClient() {
     this.findUserById = findUserById;
     this.deleteUser = deleteUser;
     this.updateUser = updateUser;
+    this.login = login;
     this.url = 'http://localhost:8085/api/user';
     var self = this;
-
+    this.login = 'http://localhost:8085/api/login';
     //'https://fathomless-brook-39975.herokuapp.com/api/user' 
     
 
@@ -55,6 +56,16 @@ function UserServiceClient() {
             .then(function (response) {
                 return response.json();
             });
+    }
+    
+    function login(username,password) {
+        return fetch(self.login, {
+            method: 'post',
+            body: JSON.stringify({username:username, password: password}),
+            headers: {
+                'content-type': 'application/json'
+            }
+        });
     }
 
 }
