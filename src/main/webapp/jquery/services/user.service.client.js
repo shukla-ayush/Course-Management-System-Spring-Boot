@@ -4,12 +4,14 @@ function UserServiceClient() {
     this.findUserById = findUserById;
     this.deleteUser = deleteUser;
     this.updateUser = updateUser;
+    this.updateProfile = updateProfile;
     this.register = register;
     this.login = login;
-    this.url = 'http://localhost:8085/api/user';
+    this.url = 'https://fathomless-brook-39975.herokuapp.com/api/user';
     var self = this;
-    this.login = 'http://localhost:8085/api/login';
-    this.reg = 'http://localhost:8085/api/reg';
+    this.login = 'https://fathomless-brook-39975.herokuapp.com/api/login';
+    this.reg = 'https://fathomless-brook-39975.herokuapp.com/api/reg';
+    this.profile = 'https://fathomless-brook-39975.herokuapp.com/api/profile';
     //'https://fathomless-brook-39975.herokuapp.com/api/user' 
     
 
@@ -78,6 +80,24 @@ function UserServiceClient() {
                  'content-type': 'application/json'
              }
          });
+    }
+    
+    function updateProfile(user){
+    	return fetch(self.profile, {
+            method: 'put',
+            body: JSON.stringify(user),
+            headers: {
+                'content-type': 'application/json'
+            }
+        })
+        .then(function(response){
+            if(response.bodyUsed) {
+                return response.json();
+            } else {
+                return null;
+            }
+        });
+    	
     }
 
 }

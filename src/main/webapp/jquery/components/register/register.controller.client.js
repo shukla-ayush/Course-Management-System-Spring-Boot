@@ -45,7 +45,8 @@
     		}
     		
     		userService
-					.register(user);   		
+					.register(user)
+					.then();   		
     		
     	}
     	else{
@@ -53,5 +54,6 @@
     	}
     	
     }
+    
     
 })();

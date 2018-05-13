@@ -1,34 +1,48 @@
 (function() {
-    $(init);
 
-    var $username
-    var $email;
-    var $phone;
-    var $dob;
-    var $updateBtn;
-    var userService = new UserServiceClient();
-
+	 var $updateBtn;
+	 var userService = new UserServiceClient();
+	 $(init);
+    
     function init() {
-    	$username = $("#username");
-        $email = $("#email");
-        $phone = $("#phone");
-        $dob = $("#dob");
+    	var $username = $("#username");
+        var $email = $("#email");
+        var $phone = $("#phone");
+        var $dob = $("#dob");
+        var $role = $("#role");
+        
+        var user = {
+        	username: $username,
+        	email: $email,
+        	phone: $phone,
+        	dob: $dob,
+        	role: $role
+        }
         
         $updateBtn = $("#updateBtn")
-            .click(updateUser);
+            .click(user, updateProfile);
 
-        findUserById(2);
+        //findUserById(2);
     }
 
-    function updateUser() {
+    function updateProfile(event) {
+    	
+    	username = event.data.username.val();
+    	phone = event.data.phone.val();
+    	email = event.data.email.val();
+    	dob = event.data.dob.val();
+    	role = event.data.role.val();
+    	
         var user = {
-            phone = $phone.val();
-            email = $email.val();
-        	dob = $dob.val();
+        	username: username,	
+            phone: phone,
+            email: email,
+        	dob: dob,
+        	role: role
         };
 
         userService
-            .updateUser(12, user)
+            .updateProfile(user)
             .then(success);
     }
 
@@ -52,4 +66,5 @@
         $phone.val(user.phone);
         $dob.val(user.dob);
     }
+    
 })();

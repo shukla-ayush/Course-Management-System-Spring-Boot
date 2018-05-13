@@ -47,10 +47,30 @@ public class User {
 	public void setRole(String role) {
 		this.role = role;
 	}
-
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getDob() {
+		return dob;
+	}
+	public void setDob(String dob) {
+		this.dob = dob;
+	}
 	private String username;
 	private String password;
 	private String firstname;
 	private String lastname;
 	private String role;
+	private String phone;
+	private String email;
+	private String dob;
 }

@@ -10,8 +10,9 @@
           integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
           crossorigin="anonymous"></script>
     
+    <script src="../../services/user.service.client.js"></script>  
     <script src="profile.controller.client.js"></script>
-    <script src="../../services/user.service.client.js"></script>   
+     
 
 </head>
 <body>
@@ -26,7 +27,7 @@
         </label>
         <div class="col-sm-10">
           <input type="text" 
-          		 readonly class="form-control-plaintext" 
+          		 class="form-control" 
           		 id="username" 
           		 value="alice">
         </div>
@@ -61,9 +62,9 @@
           Role
         </label>
         <div class="col-sm-10">
-          <select name="role" class="form-control">
-        			<option value="faculty">Faculty</option>
-        			<option value="faculty">Student</option>
+          <select id="role" class="form-control">
+        			<option value="Faculty">Faculty</option>
+        			<option value="Student">Student</option>
           </select>
         </div>
       </div>
@@ -94,10 +95,10 @@
         <div class = "col-sm-2">
         </div>
         <div class="col-sm-10">
-           <button id="updateBtn"
+           <button id="logoutBtn"
               type="button"
               class="col-sm-12 btn btn-danger btn-block">
-              Update
+              Logout
            </button>
         </div>
       </div>

@@ -1,10 +1,8 @@
 package com.example.myapp.services;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -79,6 +77,23 @@ public class UserService {
 			return repository.save(user);
 		}
 		
+	}
+	
+	@PutMapping("/api/profile")
+	public User updateProfile(@RequestBody User newUser){
+		Optional<User> data = repository.findUserByUsername(newUser.getUsername());
+		if(data.isPresent()) {
+			System.out.println("Inside!!");
+			User user = data.get();
+			System.out.println(newUser.getEmail()+"#############");
+			user.setEmail(newUser.getEmail());
+			user.setRole(newUser.getRole());
+			user.setDob(newUser.getDob());
+			user.setPhone(newUser.getPhone());
+			return repository.save(user);
+			
+		}
+		return null;
 	}
 
 	
