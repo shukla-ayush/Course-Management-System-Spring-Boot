@@ -1,13 +1,57 @@
 (function () {
-    var $usernameFld, $passwordFld, $verifyPasswordFld;
     var $registerBtn;
-    var userService = new UserService();
+    var userService = new UserServiceClient();
     $(main);
 
     function main() {
+    	var $username = $('#usernameFld');
+        var $password = $('#passwordFld');
+        var $verifypassword = $('#verifypasswordFld');
+        var $firstname = $('#firstNameFld');
+        var $lastname = $('#lastNameFld');
+        var $role = $('#roleFld');
+
+        var userdata = {
+        		username: $username,
+        		password: $password,
+        		verifypassword: $verifypassword,
+        		firstname: $firstname,
+        		lastname: $lastname,
+        		role: $role
+        }
+    	
+        $registerBtn = $("#registerBtn")
+        				.click(userdata, register);
+
+    }
+    
+    function register(event) {
+    	
+		username = event.data.username.val();
+		password = event.data.password.val();
+		verifypassword = event.data.verifypassword.val();
+		firstname = event.data.firstname.val();
+		lastname = event.data.lastname.val();
+		role = event.data.role.val();
+		
+    	if(password === verifypassword){
+    		
+    		var user = {
+    			username: username,
+    			password: password,
+    			firstname: firstname,
+    			lastname: lastname,
+    			role: role
+    		}
+    		
+    		userService
+					.register(user);   		
+    		
+    	}
+    	else{
+    		alert("Password field do not match!")
+    	}
     	
     }
-    function register() {
     
-    }
 })();

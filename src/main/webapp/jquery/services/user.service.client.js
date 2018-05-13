@@ -4,10 +4,12 @@ function UserServiceClient() {
     this.findUserById = findUserById;
     this.deleteUser = deleteUser;
     this.updateUser = updateUser;
+    this.register = register;
     this.login = login;
     this.url = 'http://localhost:8085/api/user';
     var self = this;
     this.login = 'http://localhost:8085/api/login';
+    this.reg = 'http://localhost:8085/api/reg';
     //'https://fathomless-brook-39975.herokuapp.com/api/user' 
     
 
@@ -66,6 +68,16 @@ function UserServiceClient() {
                 'content-type': 'application/json'
             }
         });
+    }
+    
+    function register(user){
+    	 return fetch(self.reg, {
+             method: 'post',
+             body: JSON.stringify(user),
+             headers: {
+                 'content-type': 'application/json'
+             }
+         });
     }
 
 }

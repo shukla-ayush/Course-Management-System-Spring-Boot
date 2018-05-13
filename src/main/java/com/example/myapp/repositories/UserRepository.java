@@ -1,6 +1,6 @@
 package com.example.myapp.repositories;
 
-import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -14,4 +14,7 @@ public interface UserRepository extends CrudRepository<User, Integer>{
 		@Param("username") String username, 
 		@Param("password") String password);
 
+	@Query("SELECT u FROM User u WHERE u.username=:username")
+	Optional<User> findUserByUsername(
+		@Param("username") String username);
 }

@@ -22,7 +22,7 @@
       <label for="username" class="col-sm-2 col-form-label">
         Username </label>
       <div class="col-sm-10">
-        <input class="form-control" id="username" placeholder="alice">
+        <input class="form-control" id="usernameFld" placeholder="alice">
       </div>
     </div>
     <div class="form-group row">
@@ -30,7 +30,7 @@
         Password </label>
       <div class="col-sm-10">
         <input type="password" class="form-control wbdv-password-fld"
-          id="password" placeholder="********">
+          id="passwordFld" placeholder="********">
       </div>
     </div>
     <div class="form-group row">
@@ -38,13 +38,37 @@
         Verify Password </label>
       <div class="col-sm-10">
         <input type="password" class="form-control wbdv-password-fld"
-          id="verifypassword" placeholder="********">
+          id="verifypasswordFld" placeholder="********">
+      </div>
+    </div>
+     <div class="form-group row">
+      <label for="firstname" class="col-sm-2 col-form-label">
+        First Name </label>
+      <div class="col-sm-10">
+        <input class="form-control" id="firstNameFld" placeholder="First Name">
+      </div>
+    </div>
+     <div class="form-group row">
+      <label for="lastname" class="col-sm-2 col-form-label">
+        Last Name </label>
+      <div class="col-sm-10">
+        <input class="form-control" id="lastNameFld" placeholder="Last Name">
+      </div>
+    </div>
+     <div class="form-group row">
+      <label for="role" class="col-sm-2 col-form-label">
+        Role </label>
+      <div class="col-sm-10">
+        <select id="roleFld" class="form-control">
+        			<option value="Faculty">Faculty</option>
+        			<option value="Student">Student</option>
+        	</select>
       </div>
     </div>
     <div class="form-group row">
       <label class="col-sm-2 col-form-label"></label>
       <div class="col-sm-10">
-        <button class="btn btn-primary btn-block">Sign up</button>
+        <button id="registerBtn" class="btn btn-primary btn-block">Register</button>
         <div class="row">
           <div class="col-6">
             <a href="http://localhost:8085/jquery/components/login/login.template.client.html">Login</a>
@@ -52,6 +76,7 @@
         </div>
       </div>
     </div>
+   
   </form>
 </div>
 
