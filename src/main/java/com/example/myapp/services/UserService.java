@@ -83,9 +83,7 @@ public class UserService {
 	public User updateProfile(@RequestBody User newUser){
 		Optional<User> data = repository.findUserByUsername(newUser.getUsername());
 		if(data.isPresent()) {
-			System.out.println("Inside!!");
 			User user = data.get();
-			System.out.println(newUser.getEmail()+"#############");
 			user.setEmail(newUser.getEmail());
 			user.setRole(newUser.getRole());
 			user.setDob(newUser.getDob());
