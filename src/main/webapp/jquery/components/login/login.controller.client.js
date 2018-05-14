@@ -27,6 +27,11 @@
         
     	userService
     		.login(username, password)
-    		.then();
+    		.then(showProfile);
     }
+    
+    function showProfile(response){
+    	location.href = "http://localhost:8085/jquery/components/profile/profile.template.client.html";
+    }
+    
 })();

@@ -62,7 +62,7 @@ public class UserService {
 		return null;
 	}
 	
-	@PostMapping("/api/login")
+	@PostMapping("/api/signin")
 	public List<User> login(@RequestBody User user) {
 		return (List<User>) repository.findUserByCredentials(user.getUsername(), user.getPassword());
 	}
@@ -89,10 +89,8 @@ public class UserService {
 			user.setDob(newUser.getDob());
 			user.setPhone(newUser.getPhone());
 			return repository.save(user);
-			
 		}
 		return null;
 	}
-
 	
 }

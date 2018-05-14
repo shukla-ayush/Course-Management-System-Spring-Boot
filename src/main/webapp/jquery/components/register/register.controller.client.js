@@ -46,13 +46,21 @@
     		
     		userService
 					.register(user)
-					.then();   		
+					.then(success);   		
     		
     	}
     	else{
     		alert("Password field do not match!")
     	}
     	
+    }
+    
+    function success(response) {
+        if(response === null) {
+            alert('unable to register/username exists')
+        } else {
+            alert('success');
+        }
     }
     
     
