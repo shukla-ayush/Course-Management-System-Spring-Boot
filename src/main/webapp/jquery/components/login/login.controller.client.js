@@ -30,7 +30,7 @@
     }
    
     function error(){
-    	alert("Invalid Credentials!");
+    	alert("Invalid Credentials.");
     }
     
     function showProfile(response){

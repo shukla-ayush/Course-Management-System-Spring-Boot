@@ -51,7 +51,7 @@
     	}
     	
     	else{
-    		alert("Password field do not match!")
+    		alert("Passwords do not match.")
     	}	
     }
     

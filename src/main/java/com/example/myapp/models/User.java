@@ -1,5 +1,7 @@
 package com.example.myapp.models;
 
+import java.sql.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,7 +20,8 @@ public class User {
 	private String role;
 	private String phone;
 	private String email;
-	private String dob;
+	//private String dob;
+	private Date dob;
 	public int getId() {
 		return id;
 	}
@@ -67,10 +70,16 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getDob() {
+//	public String getDob() {
+//		return dob;
+//	}
+//	public void setDob(String dob) {
+//		this.dob = dob;
+//	}
+	public Date getDob() {
 		return dob;
 	}
-	public void setDob(String dob) {
+	public void setDob(Date dob) {
 		this.dob = dob;
 	}
 }

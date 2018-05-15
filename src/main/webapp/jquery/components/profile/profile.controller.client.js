@@ -1,5 +1,10 @@
 (function() {
 
+	 var $username;
+	 var $email;
+	 var $phone;
+	 var $dob;
+	 var $role;
 	 var $updateBtn;
 	 var userService = new UserServiceClient();
 	 $(init);
@@ -8,14 +13,12 @@
     	
     	var link = window.location.href;
     	var uname = link.split("?")[1];
-    	console.log(uname);
-    	var $username = $("#username");
+    	$username = $("#username");
     	$username.val(uname);
-    	var $email = $("#email");
-        var $phone = $("#phone");
-        var $dob = $("#dob");
-        var $role = $("#role");
-    	
+    	$email = $("#email");
+        $phone = $("#phone");
+        $dob = $("#dob");
+        $role = $("#role");
         
         userService
         	.findUserIdByUsername(uname)
@@ -23,17 +26,17 @@
         	.then(renderUser)
         			
         $updateBtn = $("#updateBtn")
-            .click(user, updateProfile);
+            .click(updateProfile);
 
     }
 
-    function updateProfile(event) {
+    function updateProfile() {
     	
-    	username = event.data.username.val();
-    	phone = event.data.phone.val();
-    	email = event.data.email.val();
-    	dob = event.data.dob.val();
-    	role = event.data.role.val();
+    	var username = $("#username").val();
+    	var phone = $("#phone").val();
+    	var email = $("#email").val();
+    	var dob = $("#dob").val();
+    	var role = $("#role").val();
     	
         var user = {
         	username: username,	
@@ -51,7 +54,7 @@
     }
 
     function success() {
-        alert("Profile update successfully.")
+        alert("Profile updated successfully.")
     }
     
     function error(){
