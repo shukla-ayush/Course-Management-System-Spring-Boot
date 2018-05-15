@@ -5,24 +5,26 @@
 	 $(init);
     
     function init() {
+    	
+    	var link = window.location.href;
+    	var uname = link.split("?")[1];
+    	console.log(uname);
     	var $username = $("#username");
-        var $email = $("#email");
+    	$username.val(uname);
+    	var $email = $("#email");
         var $phone = $("#phone");
         var $dob = $("#dob");
         var $role = $("#role");
+    	
         
-        var user = {
-        	username: $username,
-        	email: $email,
-        	phone: $phone,
-        	dob: $dob,
-        	role: $role
-        }
-        
+        userService
+        	.findUserIdByUsername(uname)
+        	.then(findUserById)
+        	.then(renderUser)
+        			
         $updateBtn = $("#updateBtn")
             .click(user, updateProfile);
 
-        //findUserById(2);
     }
 
     function updateProfile(event) {
@@ -43,15 +45,17 @@
 
         userService
             .updateProfile(user)
-            .then(success);
+            .then(function (response){
+            	return response.json();
+            }).then(success, error);
     }
 
-    function success(response) {
-        if(response === null) {
-            alert('unable to update')
-        } else {
-            alert('success');
-        }
+    function success() {
+        alert("Profile update successfully.")
+    }
+    
+    function error(){
+    	alert("Unable to update profile.")
     }
 
     function findUserById(userId) {
@@ -61,10 +65,14 @@
     }
     
     function renderUser(user) {
-    	$username.val(user.username);
+    	var $email = $("#email");
+        var $phone = $("#phone");
+        var $dob = $("#dob");
+        var $role = $("#role");
     	$email.val(user.email);
         $phone.val(user.phone);
         $dob.val(user.dob);
+        $role.val(user.role);
     }
     
 })();

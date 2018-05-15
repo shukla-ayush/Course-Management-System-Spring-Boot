@@ -1,6 +1,7 @@
 (function () {
 	
-	
+	var $username;
+	var $password;
     var $loginBtn;
     var userService = new UserServiceClient();
     
@@ -10,28 +11,31 @@
     	
     	var $username = $('#usernameFld');
         var $password = $('#passwordFld');
-
-        var userdata = {
-            username: $username,
-            password: $password
-        };
     	
         $loginBtn = $("#loginBtn")
-                .click(userdata, login);
+        		.click(login);
     }
     
-    function login(event) {
+    function login() {
     	
-    	var username = event.data.username.val();
-    	var password = event.data.password.val();
+    	var username = $('#usernameFld').val();
+    	var password = $('#passwordFld').val();
         
     	userService
     		.login(username, password)
-    		.then(showProfile);
+    		.then(function (response){
+    			return response.json();
+    		})
+    		.then(showProfile,error);
+    }
+   
+    function error(){
+    	alert("Invalid Credentials!");
     }
     
     function showProfile(response){
-    	location.href = "http://localhost:8085/jquery/components/profile/profile.template.client.html";
+    	var userdata = response;
+    	location.href = "http://localhost:8085/jquery/components/profile/profile.template.client.html?"+userdata.username;
     }
     
 })();

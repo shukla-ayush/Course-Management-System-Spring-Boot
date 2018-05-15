@@ -7,6 +7,7 @@ function UserServiceClient() {
     this.updateProfile = updateProfile;
     this.register = register;
     this.login = login;
+    this.findUserIdByUsername = findUserIdByUsername;
     this.url = 'http://localhost:8085/api/user';
     this.signin = 'http://localhost:8085/api/signin';
     this.reg = 'http://localhost:8085/api/reg';
@@ -28,11 +29,13 @@ function UserServiceClient() {
         });
     }
     
+    
     function deleteUser(userId) {
         return fetch(self.url + '/' + userId, {
             method: 'delete'
         })
     }
+    
     
     function updateUser(userId, user) {
         return fetch(self.url + '/' + userId, {
@@ -59,12 +62,22 @@ function UserServiceClient() {
             });
     }
     
+    
     function findAllUsers() {
         return fetch(self.url)
             .then(function (response) {
                 return response.json();
             });
     }
+    
+    
+    function findUserIdByUsername(uname){
+    	return fetch(self.profile + '/' + uname)
+        .then(function(response){
+            return response.json();
+        });
+    }
+    
     
     function login(username,password) {
         return fetch(self.signin, {
@@ -74,14 +87,11 @@ function UserServiceClient() {
                 'content-type': 'application/json'
             }
         })
-        .then(function(response){
-             if(response.bodyUsed) {
-                 return response.json();
-             } else {
-                 return null;
-             }
-         });
+        .then(function (response) {
+            return response;
+        });
     }
+    
     
     function register(user){
     	 return fetch(self.reg, {
@@ -92,13 +102,10 @@ function UserServiceClient() {
              }
          })
          .then(function(response){
-             if(response.bodyUsed) {
-                 return response.json();
-             } else {
-                 return null;
-             }
+        	 return response;
          });
-    }
+    }	 
+    
     
     function updateProfile(user){
     	return fetch(self.profile, {
@@ -109,11 +116,7 @@ function UserServiceClient() {
             }
         })
         .then(function(response){
-            if(response.bodyUsed) {
-                return response.json();
-            } else {
-                return null;
-            }
+            return response;
         });
     }
     

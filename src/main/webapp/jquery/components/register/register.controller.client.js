@@ -1,38 +1,36 @@
 (function () {
+	
+	var $username;
+	var $password;
+	var $verifypassword;
+	var $firstname;
+	var $lastname;
+	var $role;
     var $registerBtn;
     var userService = new UserServiceClient();
     $(main);
 
     function main() {
-    	var $username = $('#usernameFld');
-        var $password = $('#passwordFld');
-        var $verifypassword = $('#verifypasswordFld');
-        var $firstname = $('#firstNameFld');
-        var $lastname = $('#lastNameFld');
-        var $role = $('#roleFld');
-
-        var userdata = {
-        		username: $username,
-        		password: $password,
-        		verifypassword: $verifypassword,
-        		firstname: $firstname,
-        		lastname: $lastname,
-        		role: $role
-        }
+    	$username = $('#usernameFld');
+        $password = $('#passwordFld');
+        $verifypassword = $('#verifypasswordFld');
+        $firstname = $('#firstNameFld');
+        $lastname = $('#lastNameFld');
+        $role = $('#roleFld');
     	
         $registerBtn = $("#registerBtn")
-        				.click(userdata, register);
-
+        				  .click(register);    				
     }
+    
     
     function register(event) {
     	
-		username = event.data.username.val();
-		password = event.data.password.val();
-		verifypassword = event.data.verifypassword.val();
-		firstname = event.data.firstname.val();
-		lastname = event.data.lastname.val();
-		role = event.data.role.val();
+		var username = $('#usernameFld').val();
+		var password = $('#passwordFld').val();
+		var verifypassword = $('#verifypasswordFld').val();
+		var firstname = $('#firstNameFld').val();
+		var lastname = $('#lastNameFld').val();
+		var role = $('#roleFld').val();
 		
     	if(password === verifypassword){
     		
@@ -46,21 +44,25 @@
     		
     		userService
 					.register(user)
-					.then(success);   		
-    		
-    	}
-    	else{
-    		alert("Password field do not match!")
+					.then(function (response){
+		    			return response.json();
+		    		})
+		    		.then(success, error);  
     	}
     	
+    	else{
+    		alert("Password field do not match!")
+    	}	
     }
     
-    function success(response) {
-        if(response === null) {
-            alert('unable to register/username exists')
-        } else {
-            alert('success');
-        }
+    
+    function error(){
+    	alert("Registration unsuccessful/ Username exists");
+    }
+    
+    
+    function success() {
+        alert("Registration successul");
     }
     
     
