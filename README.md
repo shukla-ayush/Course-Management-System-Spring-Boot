@@ -1,11 +1,12 @@
 # Course-Management-System-Spring-Boot
 
-This is a course management application for students and instructors. This version of the application is based on Spring Boot. The current release has the features of login, register, profile update and user-admin.
+This is a course management application for students and instructors. This version of the application is based on Spring Boot. The current release has the features of login, register, profile update, password-reset and user-admin.
 
 - user-admin allows the admin to register/add a user (student/faculty) to the database.
 - register/sign-up allows the users to add themselves to the database.
 - login allows the user to access his/her profile.
 - profile allows the user to update his/her email/date of birth/phone.
+- password-reset allows the user to reset his/her password using the username.
 
 The application is also deployed on Heroku and the links to access the application are - 
 
@@ -19,3 +20,8 @@ User-admin -
 https://fathomless-brook-39975.herokuapp.com/jquery/components/user-admin/user-admin.template.client.html
 
 The profile page can be accessed by logging in the application(using Login page). 
+
+Forgot-password? -
+https://fathomless-brook-39975.herokuapp.com/jquery/components/password-reset/password-reset.template.client.html
+
+Password reset prompts the user to enter his existing username and then set new password and verify the new password as well.
