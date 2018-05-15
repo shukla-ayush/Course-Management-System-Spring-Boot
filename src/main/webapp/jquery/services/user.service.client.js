@@ -45,13 +45,9 @@ function UserServiceClient() {
                 'content-type': 'application/json'
             }
         })
-        .then(function(response){
-            if(response.bodyUsed) {
-                return response.json();
-            } else {
-                return null;
-            }
-        });
+         .then(function(response){
+        	 return response;
+         });
     }
     
     

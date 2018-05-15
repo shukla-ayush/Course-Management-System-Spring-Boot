@@ -112,7 +112,10 @@
     	
     	userService
     		.updateUser(event.data, user)
-    		.then(findAllUsers);
+    		.then(function (response){
+    			return response.json();
+    		})
+    		.then(findAllUsers, error);
     }
     
     function renderUser(user){
@@ -128,6 +131,9 @@
         $role.val(user.role);
     }
     
+    function error(){
+    	alert("Could not update user.");
+    }
 
 
 })();
