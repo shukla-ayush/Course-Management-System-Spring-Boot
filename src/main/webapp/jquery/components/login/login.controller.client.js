@@ -35,7 +35,7 @@
     
     function showProfile(response){
     	var userdata = response;
-    	location.href = "http://localhost:8085/jquery/components/profile/profile.template.client.html?"+userdata.username;
+    	location.href = "https://fathomless-brook-39975.herokuapp.com/jquery/components/profile/profile.template.client.html?"+userdata.username;
     }
     
 })();
