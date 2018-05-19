@@ -10,6 +10,9 @@ This is a course management application for students and instructors. This versi
 
 The application is also deployed on Heroku and the links to access the application are - 
 
+Landing page for the application - 
+https://fathomless-brook-39975.herokuapp.com
+
 Register - 
 https://fathomless-brook-39975.herokuapp.com/jquery/components/register/register.template.client.html
 
