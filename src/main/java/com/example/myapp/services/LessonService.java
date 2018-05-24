@@ -42,7 +42,6 @@ public class LessonService {
 			
 			Optional<Module> data2 = moduleRepository.findById(moduleId);
 			if(data2.isPresent()) {
-				System.out.println("Module data present ........ ");
 				Module module = data2.get();
 				return module.getLessons();
 			}
