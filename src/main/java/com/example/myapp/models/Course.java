@@ -3,6 +3,7 @@ package com.example.myapp.models;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
 
 @Entity
 public class Course {
@@ -21,7 +23,8 @@ public class Course {
 	private Date created;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date modified;
-	@OneToMany(mappedBy="course")
+//	@OneToMany(mappedBy="course")
+	@OneToMany(mappedBy="course", cascade = CascadeType.REMOVE, orphanRemoval = true)
 	private List<Module> modules;
 	public int getId() {
 		return id;
@@ -39,7 +42,8 @@ public class Course {
 		return created;
 	}
 	public void setCreated(Date created) {
-		this.created = created;
+		//DateTime date = new DateTime(created);
+		this.created = created; 
 	}
 	public Date getModified() {
 		return modified;

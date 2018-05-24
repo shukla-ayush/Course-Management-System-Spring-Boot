@@ -15,14 +15,15 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.myapp.models.Course;
 import com.example.myapp.models.Lesson;
 import com.example.myapp.models.Module;
+import com.example.myapp.models.Topic;
 import com.example.myapp.repositories.CourseRepository;
 import com.example.myapp.repositories.LessonRepository;
 import com.example.myapp.repositories.ModuleRepository;
-
+import com.example.myapp.repositories.TopicRepository;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
-public class LessonService {
+public class TopicService {
 
 	@Autowired
 	CourseRepository courseRepository;
@@ -32,54 +33,70 @@ public class LessonService {
 
 	@Autowired
 	LessonRepository lessonRepository;
+	
+	@Autowired
+	TopicRepository topicRepository;
 
-	@GetMapping("/api/course/{courseId}/module/{moduleId}/lesson")
-	public List<Lesson> findAllLessonsForModule(
+	@GetMapping("/api/course/{courseId}/module/{moduleId}/lesson/{lessonId}/topic")
+	public List<Topic> findAllTopicsForLesson(
 			@PathVariable("courseId") int courseId,
-			@PathVariable("moduleId") int moduleId) {
+			@PathVariable("moduleId") int moduleId,
+			@PathVariable("lessonId") int lessonId) {
 		Optional<Course> data = courseRepository.findById(courseId);
 		if(data.isPresent()) {
 			
 			Optional<Module> data2 = moduleRepository.findById(moduleId);
 			if(data2.isPresent()) {
-				System.out.println("Module data present ........ ");
-				Module module = data2.get();
-				return module.getLessons();
+				
+				Optional<Lesson> data3 = lessonRepository.findById(lessonId);
+				if(data3.isPresent()) {
+					Lesson lesson = data3.get();
+					return lesson.getTopics();
+				}
+				return null;
 			}
 			return null;
 		}
 		return null;		
 	}
 	
-	@PostMapping("/api/course/{courseId}/module/{moduleId}/lesson")
-	public Lesson createLesson(
+	@PostMapping("/api/course/{courseId}/module/{moduleId}/lesson/{lessonId}/topic")
+	public Topic createTopic(
 			@PathVariable("courseId") int courseId,
 			@PathVariable("moduleId") int moduleId,
-			@RequestBody Lesson newLesson) {
+			@PathVariable("lessonId") int lessonId,
+			@RequestBody Topic newTopic) {
 		Optional<Course> data = courseRepository.findById(courseId);
 		if(data.isPresent()) {
 			
 			Optional<Module> data2 = moduleRepository.findById(moduleId);
 			if(data2.isPresent()) {
-				Module module = data2.get();
-				newLesson.setModule(module);
-				return lessonRepository.save(newLesson);
+				
+				Optional<Lesson> data3 = lessonRepository.findById(lessonId);
+				if(data3.isPresent()) {
+					Lesson lesson = data3.get();
+					newTopic.setLesson(lesson);
+					return topicRepository.save(newTopic);
+				}
+				return null;
 			}
+			return null;
 		}
 		return null;		
 	}
 	
-	@DeleteMapping("/api/lesson/{lessonId}")
-	public void deleteLesson(
-	  @PathVariable("lessonId")
-	    int lessonId) {
-		lessonRepository.deleteById(lessonId);
+	@DeleteMapping("/api/topic/{topicId}")
+	public void deleteTopic(
+	  @PathVariable("topicId")
+	    int topicId) {
+		topicRepository.deleteById(topicId);
 	}
 	
-	@GetMapping("/api/lesson")
-	public List<Lesson> findAllLessons()
+	@GetMapping("/api/topic")
+	public List<Topic> findAllLessons()
 	{
-		return (List<Lesson>) lessonRepository.findAll();
+		return (List<Topic>) topicRepository.findAll();
 	}
 	
 }
+

@@ -61,8 +61,6 @@ public class ModuleService {
 	    int moduleId) {
 		moduleRepository.deleteById(moduleId);
 	}
-
-	
 	
 	@GetMapping("/api/module")
 	public List<Module> findAllModules()
