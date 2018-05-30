@@ -21,6 +21,9 @@ public class Widget {
 	private int widgetOrder;
 	private String text;
 	private String widgetType;
+	private String listType;
+	private int size;
+	private String linkName;
 	@ManyToOne
 	@JsonIgnore
 	private Topic topic;
@@ -53,5 +56,23 @@ public class Widget {
 	}
 	public void setTopic(Topic topic) {
 		this.topic = topic;
+	}
+	public String getListType() {
+		return listType;
+	}
+	public void setListType(String listType) {
+		this.listType = listType;
+	}
+	public int getSize() {
+		return size;
+	}
+	public void setSize(int size) {
+		this.size = size;
+	}
+	public String getLinkName() {
+		return linkName;
+	}
+	public void setLinkName(String linkName) {
+		this.linkName = linkName;
 	}
 }
