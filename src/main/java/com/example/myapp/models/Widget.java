@@ -24,9 +24,14 @@ public class Widget {
 	private String listType;
 	private int size;
 	private String linkName;
+	private String src;
+	private String listItemsText;
+	private String linkUrl;
+	private String headingText;
 	@ManyToOne
 	@JsonIgnore
 	private Topic topic;
+	
 	public int getId() {
 		return id;
 	}
@@ -74,5 +79,29 @@ public class Widget {
 	}
 	public void setLinkName(String linkName) {
 		this.linkName = linkName;
+	}
+	public String getSrc() {
+		return src;
+	}
+	public void setSrc(String src) {
+		this.src = src;
+	}
+	public String getListItemsText() {
+		return listItemsText;
+	}
+	public void setListItemsText(String listItemsText) {
+		this.listItemsText = listItemsText;
+	}
+	public String getLinkUrl() {
+		return linkUrl;
+	}
+	public void setLinkUrl(String linkUrl) {
+		this.linkUrl = linkUrl;
+	}
+	public String getHeadingText() {
+		return headingText;
+	}
+	public void setHeadingText(String headingText) {
+		this.headingText = headingText;
 	}
 }
