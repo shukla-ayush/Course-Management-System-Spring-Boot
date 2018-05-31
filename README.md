@@ -30,3 +30,9 @@ https://fathomless-brook-39975.herokuapp.com/jquery/components/password-reset/pa
 Password reset prompts the user to enter his existing username and then set new password and verify the new password as well.
 
 The Faculty features of creating and deleting courses, modules, lessons and topics have been implemented. The client side of which can be found in the react repository by the name - Course Management System React.
+
+The faculty is now provided with widget creation and deletion options. The widget can be of different types and can also be previewed and rearranged.
+
+The link for Client side repository is - 
+
+https://github.com/shukla-ayush/Course-Management-System-React
