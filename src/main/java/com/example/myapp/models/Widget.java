@@ -28,6 +28,7 @@ public class Widget {
 	private String listItemsText;
 	private String linkUrl;
 	private String headingText;
+	private String widgetName;
 	@ManyToOne
 	@JsonIgnore
 	private Topic topic;
@@ -103,5 +104,11 @@ public class Widget {
 	}
 	public void setHeadingText(String headingText) {
 		this.headingText = headingText;
+	}
+	public String getWidgetName() {
+		return widgetName;
+	}
+	public void setWidgetName(String widgetName) {
+		this.widgetName = widgetName;
 	}
 }

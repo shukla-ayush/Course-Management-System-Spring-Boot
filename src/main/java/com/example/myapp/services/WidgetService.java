@@ -49,7 +49,6 @@ public class WidgetService {
 		
 		if(data.isPresent()) {
 			Topic topic = data.get();
-			System.out.println(topic.getId());
 			for(Widget widget: topic.getWidgets()) {
 				repository.delete(widget);
 			}
