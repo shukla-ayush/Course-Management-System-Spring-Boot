@@ -36,3 +36,9 @@ The faculty is now provided with widget creation and deletion options. The widge
 The link for Client side repository is - 
 
 https://github.com/shukla-ayush/Course-Management-System-React
+
+The faculty is now provided with Exam and Assignment creation features. The JPA inheritance has been followed to create Questions. In order to maintain previous code, all the new changes have been done only in an external branch - "exam-assignments-widgets". The current repository is for server side. There are services for all different type of questions and model representing those questions as well in the code.
+
+The link to the react native client side repository is - 
+
+https://github.com/shukla-ayush/Course-Management-System-ReactNative
