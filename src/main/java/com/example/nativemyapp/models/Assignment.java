@@ -3,15 +3,16 @@ package com.example.nativemyapp.models;
 import javax.persistence.Entity;
 
 @Entity
-public class TrueFalseQuestion extends Question {
-	private boolean isTrue;
+public class Assignment extends Widget{
+	
+	private String title;
 	private String description;
 	private int points;
-	public int getPoints() {
-		return points;
+	public String getTitle() {
+		return title;
 	}
-	public void setPoints(int points) {
-		this.points = points;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 	public String getDescription() {
 		return description;
@@ -19,10 +20,11 @@ public class TrueFalseQuestion extends Question {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public boolean isTrue() {
-		return isTrue;
+	public int getPoints() {
+		return points;
 	}
-	public void setTrue(boolean isTrue) {
-		this.isTrue = isTrue;
+	public void setPoints(int points) {
+		this.points = points;
 	}
+	
 }

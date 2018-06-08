@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.nativemyapp.models.Course;
 import com.example.nativemyapp.repositories.CourseRepository;
 
-
-
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
 public class CourseServices {

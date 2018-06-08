@@ -11,8 +11,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.nativemyapp.models.Assignment;
+import com.example.nativemyapp.models.Exam;
 import com.example.nativemyapp.models.Lesson;
 import com.example.nativemyapp.models.Widget;
+import com.example.nativemyapp.repositories.AssignmentRepository;
+import com.example.nativemyapp.repositories.ExamRepository;
 import com.example.nativemyapp.repositories.LessonRepository;
 import com.example.nativemyapp.repositories.WidgetRepository;
 
@@ -24,6 +28,10 @@ public class WidgetService {
 	@Autowired
 	WidgetRepository repository;
 	@Autowired
+	ExamRepository examRepository;
+	@Autowired
+	AssignmentRepository assignmentRepository;
+	@Autowired
 	LessonRepository lessonRepository;
 	
 	@GetMapping("/api/lesson/{lessonId}/widget")
@@ -34,6 +42,31 @@ public class WidgetService {
 			return lesson.getWidgets();
 		}
 		return null;
+	}
+	
+	@PostMapping("/api/lesson/{lessonId}/exam")
+	public void saveExamsForLesson(@RequestBody
+			Exam exam,
+			@PathVariable("lessonId") int lessonId) {
+		Optional<Lesson> data = lessonRepository.findById(lessonId);
+		if(data.isPresent()) {
+			Lesson lesson = data.get();
+			exam.setLesson(lesson);
+			examRepository.save(exam);
+		}
+	}
+	
+	@PostMapping("/api/lesson/{lessonId}/assignment")
+	public void saveAssignmentsForLesson(@RequestBody
+			Assignment assignment,
+			@PathVariable("lessonId") int lessonId) {
+		Optional<Lesson> data = lessonRepository.findById(lessonId);
+		
+		if(data.isPresent()) {
+			Lesson lesson = data.get();
+			assignment.setLesson(lesson);
+			assignmentRepository.save(assignment);
+		}
 	}
 	
 	@PostMapping("/api/widget/save")
@@ -51,69 +84,3 @@ public class WidgetService {
 	}
 }
 
-//
-//
-//import java.util.List;
-//
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.web.bind.annotation.CrossOrigin;
-//import org.springframework.web.bind.annotation.GetMapping;
-//import org.springframework.web.bind.annotation.PathVariable;
-//import org.springframework.web.bind.annotation.PostMapping;
-//import org.springframework.web.bind.annotation.RequestBody;
-//import org.springframework.web.bind.annotation.RestController;
-//
-//import com.example.nativemyapp.models.Topic;
-//import com.example.nativemyapp.models.Widget;
-//import com.example.nativemyapp.repositories.TopicRepository;
-//import com.example.nativemyapp.repositories.WidgetRepository;
-//
-//import java.util.Optional;
-//
-//@RestController
-//@CrossOrigin(origins = "*", maxAge=3600)
-//public class WidgetService {
-//
-//	@Autowired
-//	WidgetRepository repository;
-//	
-//	@Autowired
-//	TopicRepository topicRepository;
-//	
-//	@GetMapping("/api/widget")
-//	public List<Widget> findAllWidgets(){
-//		return (List<Widget>) repository.findAll();
-//	}
-//	
-//	
-//	@PostMapping("/api/widget/save/{topicId}")
-//	public void saveAllWidgets(@RequestBody List<Widget> widgets,
-//								@PathVariable("topicId") int topicId) {
-//		Optional<Topic> data = topicRepository.findById(topicId);
-//		
-//		if(data.isPresent()) {
-//			Topic topic = data.get();
-//			for(Widget widget: topic.getWidgets()) {
-//				repository.delete(widget);
-//			}
-//			for(Widget widget: widgets) {
-//				widget.setLesson(lesson);
-//				repository.save(widget);
-//			}
-//		}
-//	}
-//	
-//	@GetMapping("/api/widget/{topicId}")
-//	public List<Widget> findAllWidgetsForTopic(@PathVariable("topicId") int topicId){
-//		Optional<Topic> data = topicRepository.findById(topicId);
-//		
-//		if(data.isPresent()) {
-//			Topic topic = data.get();
-//			return topic.getWidgets();
-//		}
-//		return null;
-//	}
-//	
-//	
-//	
-//}

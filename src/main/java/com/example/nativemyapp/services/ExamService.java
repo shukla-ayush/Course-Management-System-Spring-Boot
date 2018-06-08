@@ -1,21 +1,24 @@
 package com.example.nativemyapp.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.nativemyapp.models.Exam;
-import com.example.nativemyapp.models.MultipleChoiceQuestion;
+import com.example.nativemyapp.models.Lesson;
 import com.example.nativemyapp.models.Question;
-import com.example.nativemyapp.models.TrueFalseQuestion;
+import com.example.nativemyapp.models.Widget;
+import com.example.nativemyapp.repositories.EssayQuestionRepository;
 import com.example.nativemyapp.repositories.ExamRepository;
+import com.example.nativemyapp.repositories.FillInTheBlankQuestionRepository;
+import com.example.nativemyapp.repositories.LessonRepository;
 import com.example.nativemyapp.repositories.MultipleChoicesQuestionRepository;
 import com.example.nativemyapp.repositories.TrueFalseQuestionRepository;
 
@@ -26,27 +29,15 @@ public class ExamService {
 	@Autowired
 	ExamRepository examRepository;
 	@Autowired
+	LessonRepository lessonRepository;
+	@Autowired
 	TrueFalseQuestionRepository trueFalseRepository;
 	@Autowired
-	MultipleChoicesQuestionRepository mutiRepo;
-
-	@GetMapping("/api/multi/{questionId}")
-	public MultipleChoiceQuestion findMultiQuestionById(@PathVariable("questionId") int questionId) {
-		Optional<MultipleChoiceQuestion> optional = mutiRepo.findById(questionId);
-		if(optional.isPresent()) {
-			return optional.get();
-		}
-		return null;
-	}
-
-	@GetMapping("/api/truefalse/{questionId}")
-	public TrueFalseQuestion findTrueFalseQuestionById(@PathVariable("questionId") int questionId) {
-		Optional<TrueFalseQuestion> optional = trueFalseRepository.findById(questionId);
-		if(optional.isPresent()) {
-			return optional.get();
-		}
-		return null;
-	}
+	EssayQuestionRepository essayRepository;
+	@Autowired
+	FillInTheBlankQuestionRepository fbRepository;
+	@Autowired
+	MultipleChoicesQuestionRepository multiRepo;
 	
 	@GetMapping("/api/exam/{examId}/question")
 	public List<Question> findAllQuestionsForExam(@PathVariable("examId") int examId) {
@@ -58,5 +49,28 @@ public class ExamService {
 			return questions;
 		}
 		return null;
+	}
+	
+	@GetMapping("/api/lesson/{lessonId}/exam")
+	public Iterable<Exam> findAllAssignmentForLesson(@PathVariable("lessonId") int lessonId) {
+		Optional<Lesson> data = lessonRepository.findById(lessonId);
+		if(data.isPresent()) {
+			Lesson lesson = data.get();
+			List<Exam> examList = new ArrayList<Exam>(); 
+			List<Widget> widgetList = lesson.getWidgets();
+			for (Widget widget: widgetList) {
+				if (widget.getWidgetType() == "Exam")
+				{
+					examList.add((Exam) widget);
+				}
+			}
+			return examList;
+		}
+		return null;	
+	}
+	
+	@DeleteMapping("/api/exam/{examId}")
+	public void deleteExam(@PathVariable("examId") int examId) {
+		examRepository.deleteById(examId);
 	}
 }
