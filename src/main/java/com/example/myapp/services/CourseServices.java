@@ -1,5 +1,7 @@
 package com.example.myapp.services;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -23,6 +25,17 @@ public class CourseServices {
 	@GetMapping("/api/course")
 	public Iterable<Course> findAllCourses() {
 		return courseRepository.findAll(); 
+	}
+	
+	@GetMapping("/api/course/{courseId}")
+	public Course findCourseById(@PathVariable("courseId") int id) {
+		Optional<Course> data = courseRepository.findById(id);
+		if(data.isPresent()) {
+			return data.get();
+		}
+		else {
+			return null;
+		}
 	}
 
 	@PostMapping("/api/course")
